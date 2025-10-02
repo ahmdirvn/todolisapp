@@ -125,7 +125,7 @@ class AuthenticationController extends Controller
             ]);
 
             $actionCodeSettings = [
-                'continueUrl'    => "http://localhost:5173/verify?email=" . urlencode($email),
+                'continueUrl'    => "https://forestgreen-crane-349625.hostingersite.com/verify?email=" . urlencode($email),
                 'handleCodeInApp' => false,
             ];
 
