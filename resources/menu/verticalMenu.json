@@ -1,0 +1,43 @@
+{
+  "menu": [
+    {
+      "url": "/",
+      "name": "Dashboards",
+      "icon": "menu-icon tf-icons bx bx-home-smile",
+      "slug": "dashboard",
+      "badge": ["danger", "5"],
+      "submenu": [
+        {
+          "url": "/dashboard",
+          "name": "Analytics",
+          "slug": "dashboard"
+        }
+      ]
+    },
+    { "menuHeader": "Apps & Pages" },
+    {
+      "url": "tasks",
+      "icon": "menu-icon tf-icons bx bx-check-square",
+      "name": "Tasks",
+      "slug": "tasks"
+    },
+    {
+      "url": "study-plan",
+      "icon": "menu-icon tf-icons bx bx-calendar",
+      "name": "Study Plan",
+      "slug": "study-plan"
+    },
+    {
+      "url": "meet",
+      "icon": "menu-icon tf-icons bx bx-video",
+      "name": "Meet",
+      "slug": "meet"
+    },
+    {
+      "url": "chat",
+      "icon": "menu-icon tf-icons bx bx-chat",
+      "name": "Chat",
+      "slug": "chat"
+    }
+  ]
+}
