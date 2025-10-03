@@ -38,27 +38,37 @@ class TaskController extends Controller
 
     public function view(Request $request)
     {
+        $uid = $this->getUid();
         $tasks = $this->database->getReference($this->table)->getValue() ?? []; // pastikan array
 
         if ($request->ajax()) {
-            // DataTables butuh JSON
             $result = [];
             foreach ($tasks as $id => $task) {
-                $result[] = [
-                    'id'          => $id,
-                    'title'       => $task['title'] ?? '',
-                    'description' => $task['description'] ?? '',
-                    'status'      => $task['status'] ?? 'pending',
-                    'priority'    => $task['priority'] ?? 'medium',
-                    'due_date'    => $task['due_date'] ?? null,
-                ];
+                if (($task['user_id'] ?? null) === $uid) { // filter berdasarkan user login
+                    $result[] = [
+                        'id'          => $id,
+                        'title'       => $task['title'] ?? '',
+                        'description' => $task['description'] ?? '',
+                        'status'      => $task['status'] ?? 'pending',
+                        'priority'    => $task['priority'] ?? 'medium',
+                        'due_date'    => $task['due_date'] ?? null,
+                    ];
+                }
             }
             return response()->json(['data' => $result]);
         }
 
-        // Normal view
-        return view('tasks.index', compact('tasks'));
+        // Normal view → kirim hanya task user
+        $userTasks = [];
+        foreach ($tasks as $id => $task) {
+            if (($task['user_id'] ?? null) === $uid) {
+                $userTasks[$id] = $task;
+            }
+        }
+
+        return view('tasks.index', ['tasks' => $userTasks]);
     }
+
 
 
     // CREATE

@@ -61,6 +61,12 @@
 @section('page-script2')
 <script>
 $(document).ready(function () {
+    $.ajaxSetup({
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+  });
+
     // DataTable
     let table = $('#taskTable').DataTable({
         ajax: '/tasks',
